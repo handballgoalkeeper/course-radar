@@ -53,7 +53,6 @@ class ItMentorstvaSpider(scrapy.Spider):
 
     def __parse_price_page(self, response: Response) -> dict:
         if response.meta.get('link') is None:
-            # Pitati tomu, da li da mu scrapeujem i ove nevidljive sekcije...
             packets = response.xpath(".//main"
                                      "//section[not(contains(@class, 'elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile'))]"
                                      "//div["
@@ -61,12 +60,6 @@ class ItMentorstvaSpider(scrapy.Spider):
                                      "contains(@class, 'elementor-column-gap-no')"
                                      "]"
                                      "//div[normalize-space(@class) = 'elementor-price-table']")
-            # packets = response.xpath(".//main"
-            #                          "//div["
-            #                          "contains(@class, 'elementor-container') and "
-            #                          "contains(@class, 'elementor-column-gap-no')"
-            #                          "]"
-            #                          "//div[normalize-space(@class) = 'elementor-price-table']")
 
             # noinspection PyTypeChecker
             packets = [asdict(packet) for packet in ItMentorstvaMapper.parse_packet_list(packets)]
