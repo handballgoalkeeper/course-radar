@@ -68,9 +68,6 @@ class ItMentorstvaSpider(scrapy.Spider):
             #                          "]"
             #                          "//div[normalize-space(@class) = 'elementor-price-table']")
 
-            counter = 1
-            for packet in ItMentorstvaMapper.parse_packet_list(packets):
-                # noinspection PyTypeChecker
-                yield asdict(packet)
-                self.logger.info(f"Crawled packet {counter}: {packet}")
-                counter += 1
+            # noinspection PyTypeChecker
+            packets = [asdict(packet) for packet in ItMentorstvaMapper.parse_packet_list(packets)]
+            yield from packets
