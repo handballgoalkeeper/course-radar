@@ -1,7 +1,6 @@
 import scrapy
-from scrapy import Selector
 from scrapy.http import Response
-from scrapy.selector import SelectorList
+from dataclasses import asdict
 
 from course_radar.mappers.it_mentorstva_mapper import ItMentorstvaMapper
 
@@ -71,6 +70,7 @@ class ItMentorstvaSpider(scrapy.Spider):
 
             counter = 1
             for packet in ItMentorstvaMapper.parse_packet_list(packets):
-                yield packet
+                # noinspection PyTypeChecker
+                yield asdict(packet)
                 self.logger.info(f"Crawled packet {counter}: {packet}")
                 counter += 1
