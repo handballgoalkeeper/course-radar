@@ -92,5 +92,9 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 # TODO: For testing purposes, before i implement pipeline to go to db or maybe use REDIS MQ?
-FEED_FORMAT = 'json'  # Output format
-FEED_URI = 'output.json'  # Output file
+FEEDS = {
+    'output.json': {
+        'format': 'json',
+        'overwrite': True,
+    },
+}
