@@ -1,9 +1,7 @@
-from dataclasses import asdict
-
 from scrapy import Selector
 from scrapy.selector import SelectorList
 
-from course_radar.dtos.it_mentorstva.package_dto import PackageDTO
+from course_radar.dtos.package_dto import PackageDTO
 
 
 class PackageMapper:

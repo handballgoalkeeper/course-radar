@@ -1,7 +1,7 @@
 from scrapy import Selector
 from scrapy.selector import SelectorList
 
-from course_radar.dtos.it_mentorstva.course_dto import CourseDTO
+from course_radar.dtos.course_dto import CourseDTO
 
 
 class CourseMapper:

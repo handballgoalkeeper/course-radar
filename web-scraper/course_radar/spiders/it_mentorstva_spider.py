@@ -2,7 +2,7 @@ import scrapy
 from scrapy.http import Response
 from dataclasses import asdict
 
-from course_radar.dtos.it_mentorstva.course_dto import CourseDTO
+from course_radar.dtos.course_dto import CourseDTO
 from course_radar.mappers.it_mentorstva.course_mapper import CourseMapper
 from course_radar.mappers.it_mentorstva.package_mapper import PackageMapper
 
