@@ -98,3 +98,5 @@ FEEDS = {
         'overwrite': True,
     },
 }
+# Super important
+DUPEFILTER_CLASS = "scrapy.dupefilters.BaseDupeFilter"

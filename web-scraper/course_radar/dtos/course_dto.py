@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from course_radar.dtos.it_mentorstva.package_dto import PackageDTO
+from course_radar.dtos.package_dto import PackageDTO
 
 
 @dataclass
