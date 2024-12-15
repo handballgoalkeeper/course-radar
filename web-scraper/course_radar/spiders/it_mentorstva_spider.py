@@ -5,9 +5,13 @@ from dataclasses import asdict
 from course_radar.dtos.course_dto import CourseDTO
 from course_radar.mappers.it_mentorstva.course_mapper import CourseMapper
 from course_radar.mappers.it_mentorstva.package_mapper import PackageMapper
-
+from course_radar.dtos.course_provider_dto import CourseProviderDto
 
 class ItMentorstvaSpider(scrapy.Spider):
+    # -----DON'T DELETE THIS-----
+    id = 2#                     |
+    # ---------------------------
+    course_provider = CourseProviderDto(name='ITMentorstva', web_site_url='https://itmentorstva.com')
     name = "it_mentorstva_spider"
     allowed_domains = ["itmentorstva.com"]
     start_urls = ["https://itmentorstva.com/kursevi-programiranja/"]
@@ -15,7 +19,6 @@ class ItMentorstvaSpider(scrapy.Spider):
         'https://itmentorstva.com/python-checkout',
         'https://itmentorstva.com/nodejs-checkout'
     ]
-
 
     def parse(self, response, **kwargs):
         courses_elements = response.xpath(
