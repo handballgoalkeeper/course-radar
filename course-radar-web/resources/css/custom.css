@@ -1,3 +1,21 @@
+@import "bootstrap";
+@import "bootstrap-icons";
+
 body {
     font-family: 'Roboto', Arial sans-serif;
+    background: rgba(193, 193, 193, 1);
+
+}
+
+.card-title:hover {
+    transition: transform .3s ease-in;
+    font-weight: bolder;
+    cursor: pointer;
+    color: rgba(20, 64, 122, 0.7);
+    transform: scale(1.1);
+}
+
+a.active {
+    font-weight: bolder;
+    transform: scale(1.1);
 }
