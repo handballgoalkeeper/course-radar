@@ -4,10 +4,15 @@ import scrapy
 from scrapy.http import Response
 
 from course_radar.dtos.course_dto import CourseDTO
+from course_radar.dtos.course_provider_dto import CourseProviderDto
 from course_radar.mappers.it_akademija.package_mapper import PackageMapper
 
 
 class ItAkademijaSpiderSpider(scrapy.Spider):
+    # -----DON'T DELETE THIS-----
+    id = 1#                     |
+    # ---------------------------
+    course_provider = CourseProviderDto(name='IT Akademija', web_site_url='https://www.it-akademija.com')
     name = "it_akademija_spider"
     allowed_domains = ["www.it-akademija.com"]
     start_urls = ["https://www.it-akademija.com/birajte-sest-odseka-it-strucnost-zvanicna-zvanja-eksperata"]

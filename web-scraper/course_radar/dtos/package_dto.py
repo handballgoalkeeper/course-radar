@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class PackageDTO:
+    __table__ = "packages"
     name: str = None
     description: str = None
     original_price: float = None
