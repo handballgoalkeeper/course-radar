@@ -1,5 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
         <a wire:navigate class="navbar-brand" href="/">
             <x-icons.radar-line />
             Course Radar
@@ -25,5 +24,4 @@
                 @endforeach
             </ul>
         </div>
-    </div>
 </nav>
