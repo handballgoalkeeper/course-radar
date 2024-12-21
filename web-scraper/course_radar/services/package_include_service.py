@@ -8,7 +8,7 @@ from course_radar.repositories.package_include_repository import PackageIncludeR
 class PackageIncludeService:
     def __init__(self, config, mysql_db: MySQLWrapper):
         self.config = config
-        self.logger = create_logger(config=self.config, name='CourseService')
+        self.logger = create_logger(config=self.config, name='PackageIncludeService')
         self.mysql_db = mysql_db
         self.package_include_repository = PackageIncludeRepository(
             mysql_db=self.mysql_db,
