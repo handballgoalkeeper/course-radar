@@ -102,19 +102,6 @@ class MySQLPipeline:
                         self.package_include_service.create(package_include = package_include)
             else:
                 ...
-            # if not self.__course_already_exists(item):
-            #
-            #     new_course_id = self.__create_course(
-            #         course_provider_id=course_provider_id,
-            #         item=item
-            #     )
-            #
-            #     self.__create_or_update_packages(
-            #         packages = item['packages'],
-            #         course_id = new_course_id
-            #     )
-            # else:
-            #     ...
 
         except mysql.connector.Error or Exception as e:
             print(f"Error executing query: {e}")
@@ -129,79 +116,3 @@ class MySQLPipeline:
             self.course_provider_service.create(course_provider=course_provider)
         else:
             self.course_provider_service.update(course_provider=course_provider)
-
-    def __create_or_update_packages(self, packages, course_id):
-        for package in packages:
-           if not self.__package_already_exists(package, course_id):
-               new_package_id = self.__create_package(
-                   package = package,
-                   course_id = course_id
-               )
-           else:
-               package_id = self.__update_package(
-                   package = package
-               )
-
-    def __package_already_exists(self, package, course_id):
-        self.cursor.execute("SELECT count(*) AS 'count' FROM {table_name} WHERE course_id=%s AND name=%s"
-                            .format(table_name=PackageDTO.__table__), (course_id, package['name'],))
-
-        return self.cursor.fetchone()['count'] > 0
-
-    def __create_package(self, package, course_id):
-        self.cursor.execute("""
-            INSERT INTO {table_name} (
-                course_id,
-                name,
-                description,
-                original_price,
-                discounted_price,
-                created_at,
-                updated_at
-            ) VALUES (
-                %s,
-                %s,
-                %s,
-                %s,
-                %s,
-                CURRENT_TIMESTAMP,
-                CURRENT_TIMESTAMP
-            )
-        """.format(table_name=PackageDTO.__table__), (
-            course_id,
-            package['name'],
-            package['description'],
-            package['original_price'],
-            package['discounted_price'],
-        ))
-
-        self.cursor.execute("SELECT id FROM {table_name} ORDER BY id DESC LIMIT 1"
-                            .format(table_name=PackageDTO.__table__), )
-
-        return self.cursor.fetchone()['id']
-
-    def __update_package(self, package):
-        self.cursor.execute(
-            "SELECT id, name, description, original_price, discounted_price FROM {table_name} WHERE name=%s"
-            .format(table_name=PackageDTO.__table__), (package['name'],))
-
-        current_state = self.cursor.fetchone()
-
-        if current_state['description'] != package['description']:
-            self.cursor.execute("UPDATE {table_name} SET description=%s WHERE id=%s"
-                                .format(table_name=PackageDTO.__table__), (package['description'], current_state['id']))
-
-        if current_state['original_price'] != package['original_price']:
-            self.cursor.execute("UPDATE {table_name} SET original_price=%s WHERE id=%s"
-                                .format(table_name=PackageDTO.__table__),
-                                (package['original_price'], current_state['id']))
-
-        if current_state['discounted_price'] != package['discounted_price']:
-            self.cursor.execute("UPDATE {table_name} SET discounted_price=%s WHERE id=%s"
-                                .format(table_name=PackageDTO.__table__),
-                                (package['discounted_price'], current_state['id']))
-
-        self.cursor.execute("UPDATE {table_name} SET updated_at=CURRENT_TIMESTAMP WHERE id=%s"
-                            .format(table_name=PackageDTO.__table__), (current_state['id'],))
-
-        return current_state['id']
