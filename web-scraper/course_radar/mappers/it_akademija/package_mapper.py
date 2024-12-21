@@ -2,6 +2,7 @@ from scrapy import Selector
 from scrapy.selector import SelectorList
 
 from course_radar.dtos.package_dto import PackageDTO
+from course_radar.wrappers.xpath_wrapper import XPathWrapper, XPathBuilder
 
 
 class PackageMapper:
@@ -23,17 +24,59 @@ class PackageMapper:
 
     @staticmethod
     def __get_package_name(package: Selector) -> str:
-        return package.xpath("./td/text()").get().strip()
+        return (
+            XPathWrapper(
+                root_element = package,
+                search_relative_to_root_element=True
+            )
+            .single_depth(
+                element=XPathBuilder.Element.TD
+            )
+            .inner_text()
+            .get()
+            .strip()
+        )
 
     @staticmethod
     def __get_original_price(package: Selector) -> float:
-        td_elements = package.xpath(".//td[normalize-space(@class) = 'CrveniTxt']/span/text()").getall()[0]
-        return float(td_elements)
+        return float(
+            XPathWrapper(
+                root_element = package,
+                search_relative_to_root_element = True
+            )
+            .with_recursive(
+                element = XPathBuilder.Element.TD,
+                constraints = [
+                    XPathBuilder.Constraint(
+                        constraint_part = 'normalize-space(@class) = "CrveniTxt"'
+                    )
+                ]
+            )
+            .single_depth(
+                element = XPathBuilder.Element.SPAN
+            )
+            .inner_text()
+            .get_all()[0]
+        )
 
     @staticmethod
     def __get_discounted_price(package: Selector) -> float:
-        td_elements = package.xpath(".//td[normalize-space(@class) = 'ZeleniTxt']/text()").getall()[0]
-        return float(td_elements)
+        return float(
+            XPathWrapper(
+                root_element = package,
+                search_relative_to_root_element = True
+            )
+            .with_recursive(
+                element = XPathBuilder.Element.TD,
+                constraints = [
+                    XPathBuilder.Constraint(
+                        constraint_part = 'normalize-space(@class) = "ZeleniTxt"'
+                    )
+                ]
+            )
+            .inner_text()
+            .get_all()[0]
+        )
 
     @staticmethod
     def __get_discount(package: Selector) -> float:

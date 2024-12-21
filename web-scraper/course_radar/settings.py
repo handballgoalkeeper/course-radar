@@ -33,3 +33,5 @@ MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')
 
 # Super important dont remove
 DUPEFILTER_CLASS = "scrapy.dupefilters.BaseDupeFilter"
+
+LOG_FOLDER_PATH=os.getenv('LOG_FOLDER_PATH', 'logs')

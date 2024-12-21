@@ -9,3 +9,5 @@ class CourseDTO:
     title: str = None
     description: str = None
     packages: list[PackageDTO] = None
+    course_provider_id: int = None
+    id: int = None
