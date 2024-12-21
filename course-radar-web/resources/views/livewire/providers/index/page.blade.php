@@ -8,12 +8,12 @@
         class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 row-cols-md-2 g-4">
         @foreach($providers as $provider)
             <div
-
                 class="col">
                 <div class="container">
                     <section class="mx-auto my-5" style="max-width: 23rem;">
-                        <div class="card booking-card v-2 mt-2 mb-4 rounded-bottom">
+                        <div class="card booking-card v-2 mt-2 mb-4 rounded-bottom  border border-dark-subtle">
                             <div class="bg-image">
+                                <img class="w-100 rounded-top" src="https://placehold.co/600x400">
                             </div>
                             <div class="card-body">
                                 <h4
@@ -22,10 +22,6 @@
                                 >
                                         {{ $provider->name }}
                                 </h4>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.
-                                </p>
                             </div>
                         </div>
                     </section>

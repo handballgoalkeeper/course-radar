@@ -3,12 +3,11 @@
 
 body {
     font-family: 'Roboto', Arial sans-serif;
-    background: rgba(193, 193, 193, 1);
-
+    background: rgba(193, 193, 193, .6);
 }
 
 .card-title:hover {
-    transition: transform .3s ease-in;
+    transition: transform .1s ease-in;
     font-weight: bolder;
     cursor: pointer;
     color: rgba(20, 64, 122, 0.7);

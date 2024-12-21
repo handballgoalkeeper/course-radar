@@ -11,7 +11,12 @@ class MainNavigationConfig
                 'icon' => 'bi-house',
                 'permissionNeeded' => null
             ],
-            'Course provider' => [
+            'Courses' => [
+                'routeName' => 'courses.index',
+                'icon' => 'bi-book',
+                'permissionNeeded' => null
+            ],
+            'Course providers' => [
                 'routeName' => 'providers.index',
                 'icon' => 'bi-buildings',
                 'permissionNeeded' => null

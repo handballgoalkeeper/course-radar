@@ -3,7 +3,10 @@
 namespace App\Livewire\Home\Index;
 
 use Illuminate\View\View;
+use Livewire\Attributes\Title;
 use Livewire\Component;
+
+#[Title('Home')]
 
 class Page extends Component
 {
