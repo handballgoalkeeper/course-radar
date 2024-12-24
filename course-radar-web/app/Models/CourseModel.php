@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @method static paginate(int $perPage)
+ */
 class CourseModel extends Model
 {
     const TABLE ='courses';
