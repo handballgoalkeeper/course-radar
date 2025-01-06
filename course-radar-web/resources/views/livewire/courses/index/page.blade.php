@@ -26,13 +26,19 @@
                                     <h4 class="card-title font-weight-bolder">
                                         {{ $course->title }}
                                     </h4>
+                                    <x-courses.index.price-trend-arrows />
                                 </div>
                                 <hr>
                                 <section>
                                     <p>{{ $course->description }}</p>
                                 </section>
                                 <div class="text-center h-100">
-                                    <a wire:navigate class="btn btn-primary w-100" href="">More details</a>
+                                    <a
+                                        wire:navigate class="btn btn-primary w-100"
+                                        href="{{ route('courses.permalink', [ 'course' => $course->id ]) }}"
+                                    >
+                                        More details
+                                    </a>
                                 </div>
                             </div>
                         </div>

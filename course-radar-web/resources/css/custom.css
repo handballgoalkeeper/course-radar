@@ -18,3 +18,10 @@ a.active {
     font-weight: bolder;
     transform: scale(1.1);
 }
+
+.course-trend-label {
+    background: #FFFFFF;
+    position: absolute;
+    top: -.8rem;
+    left: 1rem;
+}
